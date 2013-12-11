@@ -96,7 +96,7 @@
                                 
             }
             
-            return { Name: "Root", children: map['Root'].children };
+            return { Name: "Root", ID: 'X', children: map['Root'].children };
             
         }
 
@@ -154,16 +154,6 @@
                                     break;
                             }
                             
-                            break;
-                        case "add":
-                            
-                            var newStory = {
-                                name: "Test node",
-                                depth: story.depth + 1,
-                                id: ++numStories
-                            };
-                            if( !story.children ) story.children = [];
-                            story.children.push( newStory );
                             break;
                         case "collapse":
                             collapse(story);
@@ -284,7 +274,7 @@
 
                                 var content = "";
 
-                                content = "<b>" + d.ID + ": " + d.Name + "</b>";
+                                content = "<b>" + d.ID + " - " + d.Name + "</b>";
                                 content += "<br><b>Owner:</b> ";
                                 content += d.Owner ? d.Owner : "(None)";
                                 content += "<br><br><b>Description:</b>: " + d.Description + "<br><br>";
@@ -312,7 +302,7 @@
                             .attr("x", function (d) { return d.children || d._children ? -10 : 10; })
                             .attr("dy", ".35em")
                             .attr("text-anchor", function (d) { return d.children || d._children ? "end" : "start"; })
-                            .text(function (d) { return d.Name; })
+                            .text(function (d) { return d.ID + " - " + d.Name; })
                             .style("fill-opacity", 1e-6);
 
                         // Transition nodes to their new position.
