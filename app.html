@@ -10,9 +10,9 @@
             font: 12px sans-serif;
         }
 
-        .node.idea { fill: #A8A8A8; }
-        .node.readytostart { fill: #000000;}
-        .node.complete { fill: #00E344;}
+        .node.grey { fill: #A8A8A8; }
+        .node.black { fill: #000000;}
+        .node.green { fill: #00E344;}
 
         .link {
             fill: none;
@@ -42,14 +42,14 @@
 
     <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" type="text/javascript"></script>
-    <script src="https://dl.dropboxusercontent.com/u/11474183/Manoeuvre%20Share/jquery.csv-0.71.js" type="text/javascript"></script>
+    <script src="https://dl.dropboxusercontent.com/s/f898c6ichnofmg4/jquery.csv-0.71.js" type="text/javascript"></script>
     <script src="https://dl.dropboxusercontent.com/u/14215242/jquery.contextMenu.js" type="text/javascript"></script>
     <link rel="stylesheet" href="https://dl.dropboxusercontent.com/u/14215242/jquery.contextMenu.css" type="text/css">
     <script src="https://dl.dropboxusercontent.com/u/14215242/jquery.panzoom.js"></script>
 
 </head>
 <body>
-    <a href="https://dl.dropboxusercontent.com/u/11474183/Manoeuvre%20Share/ManoeuvreStories.csv">What was the edit link, again?</a> 
+    <a href="https://dl.dropboxusercontent.com/s/lpwojv3nyyxgm4a/ManoeuvreStories.txt">What was the edit link, again?</a> 
     <br>
     <button class="zoomIn" >Zoom in</button>
     <br>
@@ -61,11 +61,11 @@
         var numStories = 0;
         var root;
 
-        $.get("https://dl.dropboxusercontent.com/u/11474183/Manoeuvre%20Share/ManoeuvreStories.csv", function(csvDataRaw){
+        $.get("https://dl.dropboxusercontent.com/s/lpwojv3nyyxgm4a/ManoeuvreStories.txt", function(csvDataRaw){
             console.log(csvDataRaw);
 
 
-        $.csv.toObjects(csvDataRaw,{separator:'|'},function(err,csvData){
+        $.csv.toObjects(csvDataRaw,{separator:';'},function(err,csvData){
 
         function convert(array) {
             var map = {};
@@ -252,17 +252,14 @@
                             .attr("class", function (d) {
                                 var classString = "context-menu node";
                                 switch (d.Status) {
-                                    case "Idea":
-                                        classString += " idea";
+                                    case "grey":
+                                        classString += " grey";
                                         break;
-                                    case "Ready to Start":
-                                        classString += " readytostart";
+                                    case "black":
+                                        classString += " black";
                                         break;
-                                    case "In Progress":
-                                        classString += " in-progress";
-                                        break;
-                                    case "Complete":
-                                        classString += " complete";
+                                    case "green":
+                                        classString += " green";
                                         break;
                                     default: break;
                                 }
